@@ -4,11 +4,22 @@
 
 import { screen, waitFor } from "@testing-library/dom";
 import BillsUI from "../views/BillsUI.js";
+import Bills from "../containers/Bills.js";
 import { bills } from "../fixtures/bills.js";
 import { ROUTES_PATH } from "../constants/routes.js";
 import { localStorageMock } from "../__mocks__/localStorage.js";
 
 import router from "../app/Router.js";
+
+// Mock du store
+const mockStore = {
+  bills: () => ({
+    create: jest
+      .fn()
+      .mockResolvedValue({ fileUrl: "http://test.com/file.jpg", key: "1234" }),
+    update: jest.fn().mockResolvedValue({}),
+  }),
+};
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
@@ -42,6 +53,59 @@ describe("Given I am connected as an employee", () => {
       const antiChrono = (a, b) => (a < b ? 1 : +1);
       const datesSorted = [...dates].sort(antiChrono);
       expect(dates).toEqual(datesSorted);
+    });
+  });
+});
+
+// Test getBills()
+// tester si getBills() retourne les factures formatées correctement et gère les erreurs de formatage de date sans planter l'application
+describe("Given I am connected as an Employee", () => {
+  describe("When I call getBills", () => {
+    test("Then it should return formatted bills", async () => {
+      const bills = new Bills({
+        document,
+        onNavigate: jest.fn(),
+        store: mockStore,
+        localStorage: localStorageMock,
+      });
+
+      const result = await bills.getBills();
+      expect(result[0].date).toBeDefined();
+      expect(result[0].status).toBeDefined();
+    });
+
+    test("Then if a bill has a corrupted date, it should return the unformatted date", async () => {
+      const mockStoreCorrupted = {
+        bills: () => ({
+          list: jest
+            .fn()
+            .mockResolvedValue([
+              { id: "1", date: "date-corrompue", status: "pending" },
+            ]),
+        }),
+      };
+
+      const bills = new Bills({
+        document,
+        onNavigate: jest.fn(),
+        store: mockStoreCorrupted,
+        localStorage: localStorageMock,
+      });
+
+      const result = await bills.getBills();
+      expect(result[0].date).toBe("date-corrompue"); // date non formatée retournée
+    });
+
+    test("Then if store is undefined, it should return undefined", () => {
+      const bills = new Bills({
+        document,
+        onNavigate: jest.fn(),
+        store: null,
+        localStorage: localStorageMock,
+      });
+
+      const result = bills.getBills();
+      expect(result).toBeUndefined();
     });
   });
 });

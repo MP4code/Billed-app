@@ -89,6 +89,15 @@ describe("Given I am connected as an employee and I am on NewBill Page", () => {
       });
       // Simuler l'événement de changement de fichier
       // fireEvent.change est une fonction de la bibliothèque @testing-library/dom qui permet de simuler un événement de changement sur un élément du DOM
+      Object.defineProperty(fileInput, "value", {
+        value: "C:\\fakepath\\test.jpg",
+        writable: true,
+      });
+      Object.defineProperty(window, "localStorage", {
+        value: localStorageMock,
+        writable: true,
+      });
+
       fireEvent.change(fileInput);
       // Vérifier que les propriétés du fichier ont été mises à jour
       await waitFor(() => {
