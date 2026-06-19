@@ -14,9 +14,17 @@ import router from "../app/Router.js";
 // Mock du store
 const mockStore = {
   bills: () => ({
-    create: jest
-      .fn()
-      .mockResolvedValue({ fileUrl: "http://test.com/file.jpg", key: "1234" }),
+    list: jest.fn().mockResolvedValue([
+      {
+        id: "1",
+        date: "2022-01-01",
+        status: "pending",
+      },
+    ]),
+    create: jest.fn().mockResolvedValue({
+      fileUrl: "http://test.com/file.jpg",
+      key: "1234",
+    }),
     update: jest.fn().mockResolvedValue({}),
   }),
 };

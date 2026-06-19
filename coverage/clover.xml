@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1780062691409" clover="3.2.0">
-  <project timestamp="1780062691410" name="All files">
+<coverage generated="1781852673189" clover="3.2.0">
+  <project timestamp="1781852673189" name="All files">
     <metrics statements="228" coveredstatements="197" conditionals="80" coveredconditionals="62" methods="67" coveredmethods="48" elements="375" coveredelements="307" complexity="0" loc="228" ncloc="228" packages="3" files="16" classes="16"/>
     <package name="constants">
       <metrics statements="8" coveredstatements="8" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
@@ -44,13 +44,13 @@
         <line num="40" count="4" type="stmt"/>
         <line num="41" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="42" count="3" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
         <line num="57" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
       </file>
       <file name="Dashboard.js" path="C:\Users\Marina\Desktop\Alternance\Projet9\bill-app\Billed-app-FR-Front\src\containers\Dashboard.js">
         <metrics statements="69" coveredstatements="65" conditionals="29" coveredconditionals="20" methods="23" coveredmethods="18"/>
