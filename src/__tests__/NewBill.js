@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+//
 // Un mock c'est un faux objet qu'on crée pour remplacer une vraie dépendance pendant les tests.
 // Il permet de simuler le comportement d'une partie du code qui n'est pas directement testée, comme une API ou une base de données,
 // afin de se concentrer sur la logique spécifique que l'on souhaite tester.
